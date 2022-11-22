@@ -21,7 +21,7 @@ def cais_mining(request):
     options.add_argument("--window-size=1920,1200")
 
     # Driver declaration and link
-    DRIVER_PATH = r'C:\Users\\adzak\Downloads\chromedriver_win32\chromedriver.exe'
+    DRIVER_PATH = r'course_picker/app/chromedriver.exe'
     driver = webdriver.Chrome(executable_path=DRIVER_PATH) # adds options=options for driver for headless
     driver.get('https://cais.kaist.ac.kr/notice')
 
