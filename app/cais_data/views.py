@@ -128,13 +128,12 @@ def cais_mining(request):
     # print('\n')
 
     # Create a godforsaken list of courses taken
-    student2 = Student.objects.filter(student_id='20200846').first()
-    student_history = CourseHistory.objects.filter(student=student2)
+    student_history = CourseHistory.objects.filter(student=student)
     if student_history.exists():
         student_history = student_history.first()
     else:
         student_history = CourseHistory(
-            student=student2,
+            student=student,
         )
         student_history.save()
 
