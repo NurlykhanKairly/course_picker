@@ -11,13 +11,14 @@ from student.models import Student
 from department.models import Department
 from course.models import Course, CourseHistory
 
-
-# Create your views here.
-
+# I'll just use codes for course name for now
+# Ass
 # Module: selenium
 # Inputs: username, password, otp
-# Outputs: tot_cred, courses
-def cais_mining(request):
+# Outputs: 
+# (Student): major, major2, tot_cred, year
+# (Course History) courses
+def run():
     # Headless option
     options = Options()
     options.headless = True
@@ -173,5 +174,3 @@ def cais_mining(request):
     # time.sleep(120)
     driver.close()
     driver.quit()
-
-    return render(request, 'cais_data\index.html')
