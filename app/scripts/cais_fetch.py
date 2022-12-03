@@ -23,6 +23,7 @@ def run():
     options = Options()
     options.headless = True
     options.add_argument("--window-size=1920,1200")
+    options.add_argument("--log-level=3"); # to silence driver
 
     # Driver declaration and link
     DRIVER_PATH = r'course_picker/app/chromedriver.exe'

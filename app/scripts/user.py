@@ -9,8 +9,8 @@ def run():
             name = 'Akhdan',
             student_id = '20200846',
             email = 'adzakymaulana15@gmail.com',
-            username = 'dzakymaulana15',
-            password = 'Dead_lock15',
+            username = '##################',
+            password = '##################',
         )
         user.save()
     else:
