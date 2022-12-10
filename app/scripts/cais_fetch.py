@@ -35,40 +35,47 @@ def run():
     h1.click()
 
     # My login credentials
-    username = '##################'
-    password = '##################'
+    try:
+        username = '*****'
+        password = '*****'
 
-    # Insert user name and continue
-    h2 = driver.find_element(By.ID, 'IdInput')
-    h3 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[2]/input[2]')
+        # Insert user name and continue
+        h2 = driver.find_element(By.ID, 'IdInput')
+        h3 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[2]/input[2]')
 
-    h2.send_keys(username)
-    h3.click()
+        h2.send_keys(username)
+        h3.click()
 
-    # Insert password and continue
-    h4 = driver.find_element(By.ID, 'passwordInput')
-    h5 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[3]/input[2]')
+        # Insert password and continue
+        h4 = driver.find_element(By.ID, 'passwordInput')
+        h5 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[3]/input[2]')
 
-    h4.send_keys(password)
-    h5.click()
+        h4.send_keys(password)
+        h5.click()
+        # 2-step authentication
+        # This time, you can input the OTP from terminal
+        WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="email"]'))).click()
+    except:
+        print('The login data is incorrect')
 
-    # 2-step authentication
-    # This time, you can input the OTP from terminal
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="email"]'))).click()
     time.sleep(2) # to avoid the devtools output
-    print('\n==========================')
-    otp = input('OTP Code: ')
-    print('==========================\n')
 
-    # Then, insert the OTP code
-    h6 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[4]/input')
-    h7 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[5]/input')
+    try:
+        print('\n==========================')
+        otp = input('OTP Code: ')
+        print('==========================\n')
 
-    h6.send_keys(otp)
-    h7.click()
+        # Then, insert the OTP code
+        h6 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[4]/input')
+        h7 = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/div/fieldset/ul/li[5]/input')
+
+        h6.send_keys(otp)
+        h7.click()
+        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="head"]/a')))
+    except:
+        print('The OTP code is incorrect')
 
     # Wait until the title of the CAIS page appears
-    WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="head"]/a')))
 
     # Try changing language to English
     try:
@@ -82,7 +89,7 @@ def run():
     driver.get('https://cais.kaist.ac.kr/grade')
 
     # List all relevant years
-    start_year = 2020
+    start_year = 2019
     current_year = datetime.date.today().year
 
     list = []
@@ -104,12 +111,15 @@ def run():
     print('Total credits: ' + tot_cred)
 
     print('\nList of Courses Taken:')
-    student = Student.objects.filter(username='timmy').first()
+    student = Student.objects.filter(username='nurlykhan').first()
     print(student.name)
     student_history = CourseHistory(
         student=student,
     )
     student_history.save()
+
+    for i in courses:
+        print(i)
 
     for i in courses:
         if i[0:3] == 'HSS':
@@ -118,6 +128,9 @@ def run():
         elif i[0:2] == 'CS':
             department = Department.objects.filter(code='CS').first()
             print('CS course', i, department.code)
+        elif i[0:2] == 'EE':
+            department = Department.objects.filter(code='EE').first()
+            print('EE course', i, department.code)
         else:
             department = Department.objects.filter(code='Other').first()
             print('Other courses', i, department.code)

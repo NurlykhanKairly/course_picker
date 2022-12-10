@@ -55,3 +55,6 @@ class Student(models.Model):
     class Meta:
         verbose_name = 'KAIST Student'
         verbose_name_plural = 'KAIST Students'
+
+    def __str__(self):
+        return self.name + ' | ' + self.student_id

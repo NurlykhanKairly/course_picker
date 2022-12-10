@@ -9,7 +9,7 @@ def run():
         'year': 2022,
         'semester': 3,
         'type': 'ALL',
-        'department': 'CS',
+        'department': 'HSS',
         'level': 'ALL',
         'order': 'class_no',
         'limit': 300,
@@ -21,9 +21,12 @@ def run():
             course = course.first()
         else:
             department = Department.objects.filter(code=lecture['department_code']).first()
+            course_type = 3 if lecture['type_en'] == 'Major Elective' else 2
             course = Course(
                 title=lecture['old_code'],
                 department=department,
+                type=course_type,
+                credit=lecture['credit'],
             )
             course.save()
 

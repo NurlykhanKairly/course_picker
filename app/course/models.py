@@ -30,6 +30,9 @@ class Course(models.Model):
         default=0
     )
 
+    def __str__(self):
+        return self.title
+
 
 class Class(models.Model):
     uuid = models.UUIDField(
@@ -46,6 +49,9 @@ class Class(models.Model):
     load = models.IntegerField()
     speech = models.IntegerField()
     class_times = models.JSONField()
+
+    def __str__(self):
+        return self.title
 
 
 class CourseHistory(models.Model):
