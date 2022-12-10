@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+  <html lang = "eng">
+    <head>
+        <title>Login</title>
+        <meta charset ="UTF-8"/>
+        <meta name = "viewport" content = "width = device-width , initial scale = 1.0"/>
+        <style>
+            .outer{ 
+  margin: auto;
+  margin-top: 230px;
+  width: 30%;
+
+  padding:55px 0px 55px 0px;
+  background-color: rgb(3, 41, 41);
+}
+
+button{
+ margin-top: 15px; 
+ display: block;
+ padding:8px 15px 8px 15px;
+ margin-left: 186px;
+
+}
+
+a{
+    text-decoration:none;
+}
+
+.id{
+margin-bottom: 10px;
+}
+
+input{
+display:block;
+margin-left: 117px;
+padding:8px 15px 8px 15px;
+}
+
+p{
+margin-bottom: 50px;
+margin-left: 125px;
+color:rgb(93, 195, 195);
+}
+
+body{
+background-image: url("kaist-building.jpg");
+background-position: center center fixed;
+background-size:cover;
+background-repeat: no-repeat;
+}
+        </style>
+    </head>
+    <body>
+        <div class = "outer">
+            <form action = "/action_page.php" method="post">
+                <p>Automatic Schedule Support</p>
+                <div class = "id"> <input type = 'text' name = 'username' placeholder = "UID" required></div>
+                <div class = "pw"> <input type = 'text' name = "password" placeholder = "Password" required></div>
+                <button type = "submit"><a href = homepage.html>Login</a></button>
+            </form>
+        </div>    
+    </body>
+  </html>
+
